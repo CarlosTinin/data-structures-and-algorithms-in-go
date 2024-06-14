@@ -1,0 +1,6 @@
+go 1.18
+
+use (
+	./algorithms
+	./algorithms/backtracking/knight-tour
+)
