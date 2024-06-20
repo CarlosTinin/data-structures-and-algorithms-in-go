@@ -1,6 +1,9 @@
 package knighttour
 
-import "fmt"
+import (
+	"data-structures-and-algorithms-in-go/algorithms/backtracking/utils"
+	"fmt"
+)
 
 var movei = []int{ 2, 1, -1, -2, -2, -1, 1, 2}
 var movej = []int{ 1, 2, 2, 1, -1, -2, -2, -1}
@@ -21,16 +24,7 @@ func KnightTour(n int) {
 	board[0][0] = -1
 
 	recKnightTour(n, board, 0, 0, 1)
-	printBoard(n, board)
-}
-
-func printBoard(n int, board map[int][]int) {
-	for i := 0; i < n; i++ {
-		for j := 0; j < n; j++ {
-			fmt.Printf("%v ", board[i][j])
-		}
-		fmt.Println()
-	}
+	utils.PrintMatrix(n, board)
 }
 
 

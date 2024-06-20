@@ -2,5 +2,7 @@ go 1.18
 
 use (
 	./algorithms
+	./algorithms/backtracking/utils
 	./algorithms/backtracking/knight-tour
+	./algorithms/backtracking/rat-in-a-maze
 )
