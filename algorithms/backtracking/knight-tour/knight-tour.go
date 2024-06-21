@@ -8,7 +8,6 @@ import (
 var movei = []int{ 2, 1, -1, -2, -2, -1, 1, 2}
 var movej = []int{ 1, 2, 2, 1, -1, -2, -2, -1}
 const MAX_MOVES = 8
-var tries = 0
 
 /*
 	Knight Tour Auxiliary main function, starts the recursive backtraking function and prints the matrix result
@@ -29,7 +28,6 @@ func KnightTour(n int) {
 
 
 func recKnightTour(n int, board map[int][]int, i int, j int, step int) int {
-	tries++
 	if (step == n*n) {
 		return 1
 	}
