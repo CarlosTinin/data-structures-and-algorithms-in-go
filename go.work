@@ -1,8 +1,12 @@
 go 1.18
 
+// Go Workspace. Set up the reference to each package/directory inside this workspace. 
+// Strictly set the path where the module are.
+
 use (
 	./algorithms
 	./algorithms/backtracking/utils
+	./algorithms/backtracking/n-queen
 	./algorithms/backtracking/knight-tour
 	./algorithms/backtracking/rat-in-a-maze
 )
