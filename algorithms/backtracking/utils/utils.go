@@ -12,3 +12,12 @@ func PrintMatrix(n int, board map[int][]int) {
 		fmt.Println()
 	}
 }
+
+func CreateBoard(size int) map[int][]int {
+	board := make(map[int][]int)
+	for i := 0; i < size; i++ {
+		board[i] = make([]int, size)
+	}
+
+	return board;
+}

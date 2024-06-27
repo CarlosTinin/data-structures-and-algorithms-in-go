@@ -1,8 +1,9 @@
 package knighttour
 
 import (
-	"data-structures-and-algorithms-in-go/algorithms/backtracking/utils"
 	"fmt"
+	
+	"data-structures-and-algorithms-in-go/algorithms/backtracking/utils"
 )
 
 var movei = []int{ 2, 1, -1, -2, -2, -1, 1, 2}
@@ -15,11 +16,8 @@ const MAX_MOVES = 8
 	Parameter: n int size of the board 
 */
 func KnightTour(n int) {
-	fmt.Println("Knight Tour Problem")
-	board := make(map[int][]int)
-	for i := 0; i < n; i++ {
-		board[i] = make([]int, n)
-	}
+	fmt.Printf("%v Knight Tour Solution\n\n", n)
+	board := utils.CreateBoard(n)
 	board[0][0] = -1
 
 	recKnightTour(n, board, 0, 0, 1)
