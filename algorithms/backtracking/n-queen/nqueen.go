@@ -6,14 +6,19 @@ import (
 	"data-structures-and-algorithms-in-go/algorithms/backtracking/utils"
 )
 
-const QUEENS = 8
+const QUEENS = 16
 
 func NQueen() {
 	fmt.Printf("%v Queen Solution:\n\n", QUEENS)
 	board := utils.CreateBoard(QUEENS)
-	positions := make([]int, QUEENS)
+
+	diagonals := (4*QUEENS - 2)/2
+	leftDiag  := make([]int, diagonals)
+	rightDiag := make([]int, diagonals)
+	checkColumn := make([]int, QUEENS)
 	
-	recNqueen(positions, board, 0, 0)
+	//recNqueen(board, 0, 0)
+	recNqueenEnhanced(board, 0, 0, leftDiag, rightDiag, checkColumn)
 
 	utils.PrintMatrix(QUEENS, board)
 }
@@ -42,7 +47,28 @@ func isSafe(board map[int][]int, line int, column int) bool {
 	return true
 }
 
-func recNqueen(positions []int, board map[int][]int, line int, step int) int {
+func recNqueenEnhanced(board map[int][]int, line int, step int, leftDiag []int, rightDiag []int, checkColumn []int) int {
+	if (step == QUEENS) {
+		return 1
+	}
+
+	for column := 0; column < QUEENS; column++ {
+		if (rightDiag[line+column] == 0 && leftDiag[line-column+QUEENS-1] == 0 && checkColumn[column] == 0) {
+			board[line][column] = 1
+			rightDiag[line+column], leftDiag[line-column+QUEENS-1], checkColumn[column] = 1, 1, 1
+			if (recNqueen(board, line+1, step+1) == -1) {
+				board[line][column] = 0
+				rightDiag[line+column], leftDiag[line-column+QUEENS-1], checkColumn[column] = 0, 0, 0
+			} else {
+				return 1
+			}
+		}
+	}
+
+	return -1
+}
+
+func recNqueen(board map[int][]int, line int, step int) int {
 	if (step == QUEENS) {
 		return 1
 	}
@@ -50,9 +76,8 @@ func recNqueen(positions []int, board map[int][]int, line int, step int) int {
 	for column := 0; column < QUEENS; column++ {
 		if (isSafe(board, line, column)) {
 			board[line][column] = 1
-			if (recNqueen(positions, board, line+1, step+1) == -1) {
+			if (recNqueen(board, line+1, step+1) == -1) {
 				board[line][column] = 0
-				positions[line] = 0;
 			} else {
 				return 1
 			}
